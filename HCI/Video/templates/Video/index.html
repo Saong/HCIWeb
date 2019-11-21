@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<!-- Bootstrap 3.3.7 -->
+<link rel="stylesheet" href="{% static 'adminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{% static 'adminLTE/bower_components/font-awesome/css/font-awesome.min.css' %}">
+<!-- Ionicons -->
+<link rel="stylesheet" href="{% static 'adminLTE/bower_components/Ionicons/css/ionicons.min.css' %}">
+<!-- DataTables -->
+<link rel="stylesheet" href="{% static 'adminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{% static 'adminLTE/dist/css/AdminLTE.css' %}">
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+   folder instead of downloading all of them to reduce the load. -->
+<link rel="stylesheet" href="{% static 'adminLTE/dist/css/skins/_all-skins.min.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <title>个性化视频摘要</title>
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <style>
+        body
+        {
+            background-color: #ffffff;
+        }
+        ul{
+            list-style: none;
+        }
+        .list_wapper
+        {
+            /*width: 1200px;*/
+            background-color: #fff;
+            margin: 0 auto;
+            padding: 0px;
+        }
+        .clearfix::after
+        {
+            display: block;
+            clear: both;
+            content: "";
+            overflow: hidden;
+            height: 1%;
+        }
+        .list_ul
+        {
+            margin-left: -20px;
+        }
+        .list_items
+        {
+            float: left;
+            margin:0 0 0 0;
+        }
+        .cover_container
+        {
+            width: 160px;
+            height: 90px;
+        }
+    </style>
+</head>
+<link href="{%static 'css/video-js.min.css'%}" rel="stylesheet">
+<script src="{%static 'js/jquery-3.3.1.js'%}"></script>
+<script src="{%static 'js/video.min.js'%}"></script>
+<script src="{%static 'js/echarts.js'%}"></script>
+
+
+
+<body>
+          <div style="width:100%">
+                <form method="post">
+                    {% csrf_token %}
+                    <p style="margin-left:auto;margin-right:auto;width:50%">请选择一部您要观看的视频:
+
+                    <button type="button" class="btn bg-olive">
+                        <input type="file" id="videoFile" name="video" accept="video/*" />
+                    </button>
+
+                    </p>
+                </form>
+            <p align="center">
+            <video id="my_video" controls width="640" height="360" >  <!--预览图： poster="imgs/1.jpg"-->
+            </video>
+            </p>
+    </div>
+      <div class="nav-tabs-custom" style="width:50%;margin:auto">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab_1" data-toggle="tab">自定义模式</a></li>
+          <li><a href="#tab_2" data-toggle="tab">选词模式</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab_1">
+             <div style="height:100px">
+                 <label class="col-sm-2 control-label">查询语句</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="query" placeholder="请输入查询语句">
+                    {% csrf_token %}
+                    <button type="button" class="btn bg-olive pull-right" id="findclip" style="margin-top:10px" name="query">
+                      <i class="fa fa-search"></i> 查询
+                    </button>
+                  </div>
+
+             </div>
+
+          </div>
+          <!-- /.tab-pane -->
+          <div class="tab-pane" id="tab_2">
+            The European languages are members of the same family. Their separate existence is a myth.
+            For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
+            in their grammar, their pronunciation and their most common words. Everyone realizes why a
+            new common language would be desirable: one could refuse to pay expensive translators. To
+            achieve this, it would be necessary to have uniform grammar, pronunciation and more common
+            words. If several languages coalesce, the grammar of the resulting language is more simple
+            and regular than that of the individual languages.
+          </div>
+          <!-- /.tab-pane -->
+        </div>
+        <!-- /.tab-content -->
+      </div>
+
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="{%static 'js/javascript.js' %}"></script>
+    <script>
+        $('.cover_container').coverPreviewModuleInit()
+    </script>
+</body>
+
+<script>
+function PrefixInteger(num, length) {
+ return ( "0000000000000000" + num ).substr( -length );
+}
+$('#findclip').click(function () {
+        var formData = new FormData();
+        formData.append('query', $("#query").val())
+        formData.append('video', document.getElementById("videoFile").files[0])
+        $.ajax({
+                url:"dataProcess",
+                type:"POST",
+                data:formData,
+                processData:false,
+                contentType:false,
+                success: function (result) {
+                    document.getElementById("my_video").play();
+                    /*
+                    document.getElementById("info_div").style.display = "block"
+                    document.getElementById("info_container").style.width = (160*result.img_list.length)+"px"
+                    for(i=0;i<result.img_list.length;i++)
+                    {
+                        console.log(PrefixInteger(String(i+1),6))
+                        var oLi = document.createElement('li');
+                        oLi.className="list_items"
+                        url = "static/img_infos/info_"+String(i)+".jpg"  //PrefixInteger(String(i+1),6)
+                        console.log(url)
+                        oLi.innerHTML = "<div class='cover_container' style='background-image: url("+url+")' data-size='48' data-row='10'> <div class='cover_progress_box'> <span class='cover_progress_bar'></span></div></div>";
+                        var diva = document.getElementById('a'); // 获取id为a的元素
+                        diva.parentNode.insertBefore(oLi, diva);
+                    }
+                    var video_segs = document.getElementsByClassName("list_items");
+                    var video = document.querySelector('#my_video')
+                        for(var i=0; i<video_segs.length; i++){
+                            (function(j){
+                                video_segs[j].onclick = function () {
+                                //alert(j);
+                                //console.log(player.currentTime())
+                                video.currentTime=result.img_list[j];
+                                video.play();
+                            };
+                            })(i)}
+                      $('.cover_container').coverPreviewModuleInit()
+                    console.log('Success!')*/
+                }
+        })
+    })
+
+</script>
+<script src="{%static 'js/index.js'%}"></script>
+
+<script src="{% static 'adminLTE/bower_components/jquery/dist/jquery.min.js' %}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{% static 'adminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<!-- DataTables -->
+<script src="{% static 'adminLTE/bower_components/datatables.net/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'adminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+<!-- SlimScroll -->
+<script src="{% static 'adminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+<!-- FastClick -->
+<script src="{% static 'adminLTE/bower_components/fastclick/lib/fastclick.js' %}"></script>
+<!-- AdminLTE App -->
+</html>
