@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="{% static 'adminLTE/dist/css/skins/_all-skins.min.css' %}">
 <head>
     <meta charset="UTF-8">
-    <title>个性化视频摘要</title>
+    <title>基于文本的视频定位</title>
     <link rel="stylesheet" href="{%static 'css/style.css'%}">
     <style>
         body
@@ -56,6 +56,18 @@
             width: 160px;
             height: 90px;
         }
+        .result{
+
+        }
+        .result li{
+            float:left;
+            display: inline;
+            margin-right: 5px;
+        }
+        .sentence{
+            margin-left:10px
+        }
+
     </style>
 </head>
 <link href="{%static 'css/video-js.min.css'%}" rel="stylesheet">
@@ -98,8 +110,53 @@
                       <i class="fa fa-search"></i> 查询
                     </button>
                   </div>
-
              </div>
+              <div class="box box-default collapsed-box box-solid ">
+                  <div class="box box-default collapsed-box">
+                    <div class="box-header with-border">
+                      <p class="box-title">查询结果</p>
+                      <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        </button>
+                      </div>
+                      <!-- /.box-tools -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                            <div class="no-padding">
+                                <div class="resulttime " style="margin-bottom: 5px;"> <!--style="display: inline;margin-left:10px;border:2px solid;border-radius:25px;-->
+                                  <div class="sentence" >The person takes out a cutting board from the drawer</div>
+                                  <ul class="nav nav-stacked result">
+                                    <li>36 - 38<span class="pull-left badge bg-green">1</span></li>
+                                    <li><a href="#">41 - 45<span class="pull-left badge bg-green">2</span></a></li>
+                                    <li><a href="#">41 - 45<span class="pull-left badge bg-green">3</span></a></li>
+                                    <li><a href="#">41 - 45<span class="pull-left badge bg-yellow">4</span></a></li>
+                                    <li><a href="#">41 - 45<span class="pull-left badge bg-yellow">5</span></a></li>
+                                    <li></li>
+                                  </ul>
+                                </div>
+                                <div class="resulttime">
+                                  <div class="sentence">The person takes out a cutting board from the drawer</div>
+                                  <ul class="nav nav-stacked result">
+                                    <li><a href="#">36 - 38<span class="pull-left badge bg-green">1</span></a></li>
+                                    <li><a href="#">41 - 45<span class="pull-left badge bg-green">2</span></a></li>
+                                    <li><a href="#">41 - 45<span class="pull-left badge bg-green">3</span></a></li>
+                                    <li><a href="#">41 - 45<span class="pull-left badge bg-yellow">4</span></a></li>
+                                    <li><a href="#">41 - 45<span class="pull-left badge bg-yellow">5</span></a></li>
+                                    <li></li>
+                                  </ul>
+                                </div>
+
+                            </div>
+                    </div>
+                    <!-- /.box-body -->
+                  </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                      The body of the box
+                    </div>
+                    <!-- /.box-body -->
+                  </div>
 
           </div>
           <!-- /.tab-pane -->
@@ -140,33 +197,6 @@ $('#findclip').click(function () {
                 contentType:false,
                 success: function (result) {
                     document.getElementById("my_video").play();
-                    /*
-                    document.getElementById("info_div").style.display = "block"
-                    document.getElementById("info_container").style.width = (160*result.img_list.length)+"px"
-                    for(i=0;i<result.img_list.length;i++)
-                    {
-                        console.log(PrefixInteger(String(i+1),6))
-                        var oLi = document.createElement('li');
-                        oLi.className="list_items"
-                        url = "static/img_infos/info_"+String(i)+".jpg"  //PrefixInteger(String(i+1),6)
-                        console.log(url)
-                        oLi.innerHTML = "<div class='cover_container' style='background-image: url("+url+")' data-size='48' data-row='10'> <div class='cover_progress_box'> <span class='cover_progress_bar'></span></div></div>";
-                        var diva = document.getElementById('a'); // 获取id为a的元素
-                        diva.parentNode.insertBefore(oLi, diva);
-                    }
-                    var video_segs = document.getElementsByClassName("list_items");
-                    var video = document.querySelector('#my_video')
-                        for(var i=0; i<video_segs.length; i++){
-                            (function(j){
-                                video_segs[j].onclick = function () {
-                                //alert(j);
-                                //console.log(player.currentTime())
-                                video.currentTime=result.img_list[j];
-                                video.play();
-                            };
-                            })(i)}
-                      $('.cover_container').coverPreviewModuleInit()
-                    console.log('Success!')*/
                 }
         })
     })
@@ -184,5 +214,6 @@ $('#findclip').click(function () {
 <script src="{% static 'adminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
 <!-- FastClick -->
 <script src="{% static 'adminLTE/bower_components/fastclick/lib/fastclick.js' %}"></script>
+<script src="{% static 'adminLTE/dist/js/adminlte.min.js'%}"></script>
 <!-- AdminLTE App -->
 </html>
