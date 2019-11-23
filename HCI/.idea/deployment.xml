@@ -5,11 +5,18 @@
       <paths name="HCIWeb">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/data02/chengjian19/HCI/sjc/HCIWeb/HCI" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
       <paths name="chengjian19@172.168.1.1:19002">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="chengjian19@172.168.1.1:19002 (1)">
         <serverdata>
           <mappings>
             <mapping deploy="/tmp/pycharm_project_662" local="$PROJECT_DIR$" />
