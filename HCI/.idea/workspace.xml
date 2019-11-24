@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="692addcc-11e5-4204-8fec-fdb50640ef64" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Video/templates/Video/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Video/templates/Video/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Video/findclip.py" beforeDir="false" afterPath="$PROJECT_DIR$/Video/findclip.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -122,7 +121,7 @@
       <workItem from="1574343562744" duration="939000" />
       <workItem from="1574490227115" duration="9201000" />
       <workItem from="1574517908297" duration="1911000" />
-      <workItem from="1574558087919" duration="6654000" />
+      <workItem from="1574558087919" duration="6787000" />
     </task>
     <servers />
   </component>

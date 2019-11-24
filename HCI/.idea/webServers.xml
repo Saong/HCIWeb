@@ -3,11 +3,11 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="bcb82d12-2a25-4485-995b-79b16503972c" name="HCIWeb" url="http://172.168.1.1">
-        <fileTransfer host="172.168.1.1" port="22" accessType="SFTP">
+        <fileTransfer host="172.168.1.1" port="19002" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
-          <option name="port" value="22" />
+          <option name="port" value="19002" />
         </fileTransfer>
       </webServer>
     </option>
