@@ -213,6 +213,8 @@ $('#findclip').click(function () {
                 processData:false,
                 contentType:false,
                 success: function (result) {
+                    console.lg('返回了结果')
+                    console.log(result)
                     document.getElementById("my_video").play();
                 }
         })
