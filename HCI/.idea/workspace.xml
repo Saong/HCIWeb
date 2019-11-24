@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="692addcc-11e5-4204-8fec-fdb50640ef64" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HCI/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/HCI/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Video/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Video/static/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Video/templates/Video/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Video/templates/Video/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +124,7 @@
       <workItem from="1574343562744" duration="939000" />
       <workItem from="1574490227115" duration="9201000" />
       <workItem from="1574517908297" duration="1911000" />
-      <workItem from="1574558087919" duration="2367000" />
+      <workItem from="1574558087919" duration="4586000" />
     </task>
     <servers />
   </component>
@@ -146,7 +149,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Video/templates/Video/index.html</url>
-          <line>199</line>
+          <line>214</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
