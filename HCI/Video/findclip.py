@@ -20,8 +20,8 @@ def findclip(request):
     data['video_name'] = 's27-d70.avi'
     #data['sentence'] = request.POST["query"]
     #data['video_name'] = f2.name
-    r = requests.post(url,data)
+    #r = requests.post(url,data)
     context = {}
-    context['answer'] = r.content
-    print(r.content)
+    context['answer'] = '1111'
+    print(context['answer'])
     return HttpResponse(json.dumps(context),content_type='application/json')
