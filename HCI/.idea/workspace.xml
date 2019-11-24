@@ -122,7 +122,7 @@
       <workItem from="1574343562744" duration="939000" />
       <workItem from="1574490227115" duration="9201000" />
       <workItem from="1574517908297" duration="1911000" />
-      <workItem from="1574558087919" duration="6044000" />
+      <workItem from="1574558087919" duration="6654000" />
     </task>
     <servers />
   </component>
@@ -147,7 +147,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Video/templates/Video/index.html</url>
-          <line>214</line>
+          <line>216</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
