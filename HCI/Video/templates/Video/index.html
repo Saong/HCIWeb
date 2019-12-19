@@ -67,7 +67,9 @@
         .sentence{
             margin-left:10px
         }
-
+        .resulttime{
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <link href="{%static 'css/video-js.min.css'%}" rel="stylesheet">
@@ -79,7 +81,11 @@
     console.log({%static 'js/echarts.js'%})
 </script>
 
-<body>
+
+<body>         <div class="alert alert-warning alert-dismissible" id="wait" style="display:none;position: absolute;top:180px;left:50%;transform: translate(-50%, 0);">
+                <h4><i class="fa fa-refresh fa-spin"></i>&nbsp&nbsp&nbsp&nbsp处理中……</h4>
+                处理该视频可能需要一段时间，请您耐心等待
+              </div>
           <div style="width:100%">
                 <form method="post">
                     {% csrf_token %}
@@ -98,8 +104,8 @@
     </div>
       <div class="nav-tabs-custom" style="width:50%;margin:auto">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#tab_1" data-toggle="tab">自定义模式</a></li>
-          <li><a href="#tab_2" data-toggle="tab">选词模式</a></li>
+          <li class="active"><a href="#tab_1" data-toggle="tab">自定义查询</a></li>
+          <!--<li><a href="#tab_2" data-toggle="tab">选词模式</a></li>-->
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="tab_1">
@@ -113,52 +119,23 @@
                     </button>
                   </div>
              </div>
-              <div class="box box-default collapsed-box box-solid ">
-                  <div class="box box-default collapsed-box">
-                    <div class="box-header with-border">
-                      <p class="box-title">查询结果</p>
-                      <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                        </button>
-                      </div>
-                      <!-- /.box-tools -->
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                            <div class="no-padding">
-                                <div class="resulttime " style="margin-bottom: 5px;"> <!--style="display: inline;margin-left:10px;border:2px solid;border-radius:25px;-->
-                                  <div class="sentence" >The person takes out a cutting board from the drawer</div>
-                                  <ul class="nav nav-stacked result">
-                                    <li>36 - 38<span class="pull-left badge bg-green">1</span></li>
-                                    <li><a href="#">41 - 45<span class="pull-left badge bg-green">2</span></a></li>
-                                    <li><a href="#">41 - 45<span class="pull-left badge bg-green">3</span></a></li>
-                                    <li><a href="#">41 - 45<span class="pull-left badge bg-yellow">4</span></a></li>
-                                    <li><a href="#">41 - 45<span class="pull-left badge bg-yellow">5</span></a></li>
-                                    <li></li>
-                                  </ul>
-                                </div>
-                                <div class="resulttime">
-                                  <div class="sentence">The person takes out a cutting board from the drawer</div>
-                                  <ul class="nav nav-stacked result">
-                                    <li><a href="#">36 - 38<span class="pull-left badge bg-green">1</span></a></li>
-                                    <li><a href="#">41 - 45<span class="pull-left badge bg-green">2</span></a></li>
-                                    <li><a href="#">41 - 45<span class="pull-left badge bg-green">3</span></a></li>
-                                    <li><a href="#">41 - 45<span class="pull-left badge bg-yellow">4</span></a></li>
-                                    <li><a href="#">41 - 45<span class="pull-left badge bg-yellow">5</span></a></li>
-                                    <li></li>
-                                  </ul>
-                                </div>
+              <div class="box box-success">
+            <div class="box-header with-border">
+                  <p class="box-title" style="font-size: 15px">查询结果</p>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                  </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="no-padding" id="resulttimes">
 
-                            </div>
-                    </div>
-                    <!-- /.box-body -->
-                  </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                      The body of the box
-                    </div>
-                    <!-- /.box-body -->
-                  </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
 
           </div>
           <!-- /.tab-pane -->
@@ -202,12 +179,19 @@
 function PrefixInteger(num, length) {
  return ( "0000000000000000" + num ).substr( -length );
 }
-$('#findclip').click(function () {
+var func = function(){
+    var time = this.innerText
+    time.replace(/[\r\n]/g,"")
+    newtime = time.split('')
+    document.getElementById("my_video").currentTime = parseFloat(time.split(" ")[0])
 
+}
+$('#findclip').click(function () {
         var formData = new FormData();
         formData.append('query', $("#query").val())
         formData.append('video', document.getElementById("videoFile").files[0])
-        console.log('点击了按钮')
+        $('#findclip').attr({"disabled":"disabled"})
+        $('#wait').show()
         $.ajax({
                 url:"dataProcess",
                 type:"POST",
@@ -217,9 +201,43 @@ $('#findclip').click(function () {
                 success: function (result) {
                     console.log('返回了结果')
                     console.log(result)
-                    document.getElementById("my_video").play();
+                    //document.getElementById("my_video").play();
+                    var ul = document.createElement("ul")
+                    ul.setAttribute('class','nav nav-stacked result')
+                    for(i=0;i<5;i++){
+                        var li = document.createElement("li")
+                        li.onclick = func
+                        var a = document.createElement("a")
+                        var start = 'start'+(i+1).toString()
+                        var end = 'end'+(i+1).toString()
+                        a.innerText = result['answer'][start].toFixed(2)+' - '+result['answer'][end].toFixed(2)
+                        var span = document.createElement("span")
+                        if(i<3)
+                            span.setAttribute("class","pull-left badge bg-green")
+                        else
+                            span.setAttribute("class","pull-left badge bg-yellow")
+                        span.innerText = (i+1).toString()
+                        a.appendChild(span)
+                        li.appendChild(a)
+                        ul.appendChild(li)
+                    }
+                    ul.appendChild(document.createElement("li"))
+                    var div = document.createElement("div")
+                    div.setAttribute('class','resulttime')
+                    var sentence = document.createElement("div")
+                    sentence.setAttribute('class','sentence')
+                    sentence.innerText = $("#query").val()
+                    div.appendChild(sentence)
+                    div.appendChild(ul)
+                    var resulttimes = document.getElementById('resulttimes')
+                    resulttimes.appendChild(div)
+                    $('#findclip').removeAttr("disabled")
+                    $('#wait').hide()
                 }
-        })
+        }
+
+        )
+    //
     })
 
 </script>

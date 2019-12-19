@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="692addcc-11e5-4204-8fec-fdb50640ef64" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Video/findclip.py" beforeDir="false" afterPath="$PROJECT_DIR$/Video/findclip.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Video/templates/Video/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Video/templates/Video/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,11 +34,11 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="I:\研一上\HCI\TextBasedVideoPositioning\web\HCI\Video\templates" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="I:\研一上\HCI\TextBasedVideoPositioning\web\HCI\Video\Video" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="I:\研一上\HCI\TextBasedVideoPositioning\web\HCI\Video\templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -121,7 +124,26 @@
       <workItem from="1574343562744" duration="939000" />
       <workItem from="1574490227115" duration="9201000" />
       <workItem from="1574517908297" duration="1911000" />
-      <workItem from="1574558087919" duration="7520000" />
+      <workItem from="1574558087919" duration="8425000" />
+      <workItem from="1574591467761" duration="5758000" />
+      <workItem from="1574598339102" duration="7459000" />
+      <workItem from="1574691452552" duration="2286000" />
+      <workItem from="1574736575286" duration="843000" />
+      <workItem from="1574748782251" duration="3495000" />
+      <workItem from="1574771732415" duration="1297000" />
+      <workItem from="1575015330498" duration="102000" />
+      <workItem from="1575442849384" duration="615000" />
+      <workItem from="1575458116893" duration="14000" />
+      <workItem from="1575774298502" duration="457000" />
+      <workItem from="1575774777028" duration="37000" />
+      <workItem from="1575775900693" duration="661000" />
+      <workItem from="1575779005822" duration="14000" />
+      <workItem from="1575860794074" duration="1326000" />
+      <workItem from="1575897536148" duration="706000" />
+      <workItem from="1575978957298" duration="20000" />
+      <workItem from="1576208191421" duration="599000" />
+      <workItem from="1576222734957" duration="2116000" />
+      <workItem from="1576329687831" duration="470000" />
     </task>
     <servers />
   </component>
@@ -144,14 +166,9 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/Video/templates/Video/index.html</url>
-          <line>216</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Video/findclip.py</url>
-          <line>26</line>
+          <line>30</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
